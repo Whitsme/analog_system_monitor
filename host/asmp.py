@@ -9,7 +9,9 @@ class Temp:
     temp = 0
 
 ser = serial.Serial(
-    '/dev/ttyACM0',  # Change this lino to the port the device is connected
+    # Change the below line to the port the device is connected
+    #'/dev/ttyACM0', #linux
+    '/dev/tty.usbmodem14601', #macOS 
     baudrate=115200,
     timeout=0.2)
 
@@ -37,12 +39,14 @@ while True:
     acc_bytes_sent = net_stat.bytes_sent
     acc_bytes_recv = net_stat.bytes_recv
     
+    """
     print(f"cpu %: {cpu_percent}")
     print(f"mem %: {psutil.virtual_memory().percent}")
     print(f"disk %: {disk_percent}")
     print(f"net down: {bits_recv_per_sec}")
     print(f"net up: {bits_sent_per_sec}")
     print(f"cpu temp: {temp_sensor.temp}")
+    """
 
     message = struct.pack("bbbbIIf", cpu_percent, 0, int(psutil.virtual_memory().percent),
                           int(disk_percent), int(bits_recv_per_sec), int(bits_sent_per_sec), temp_sensor.temp)
