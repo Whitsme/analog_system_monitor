@@ -231,7 +231,7 @@ while True:
             power_e = data[2]
             g.set_load(data[1])
             g2.set_load(data[4])
-            g3.set_load(data[2])
+            g3.set1_load(data[2])
             g4.set_load(data[3])
             power_hl = power_hl * 120
             if power_hl >= duty_max:
